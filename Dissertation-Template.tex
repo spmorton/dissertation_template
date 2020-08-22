@@ -1,0 +1,326 @@
+% Dissertation template designed by Scott P. Morton
+% Middle Tennessee State University
+% 5/1/2019
+
+\documentclass[12pt, oneside]{memoir}
+
+% Include these packages:
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[top=3.175cm, bottom=2.54cm, left=3.81cm, right=2.54cm]{geometry}	 % for margin requirements.
+\usepackage{mathptmx}% http://ctan.org/pkg/mathptmx
+\usepackage{setspace} % for double-spacing.
+\usepackage{xifthen}%
+\DoubleSpacing
+\usepackage{lipsum}
+\usepackage{tocloft}
+\usepackage{color}
+\usepackage{array}
+\usepackage{stfloats}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{changepage}
+\usepackage{titlesec}
+\usepackage{lscape}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{datetime}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage[colorlinks=true, linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+%\usepackage{color}
+
+% Define the date format modifier
+\newdateformat{mydate}{\monthname[\THEMONTH], \THEYEAR}
+
+% - - Define code snippet configuration
+
+% Make some specific colors for code snips
+\definecolor{dkgreen}{rgb}{0,0.4,0}
+\definecolor{ltgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% Force some setting specific to all programming languages, below there are specific language settings.
+\lstset{ 
+	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+	breaklines=true,                 % sets automatic line breaking
+	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	deletekeywords={...},            % if you want to delete keywords from the given language
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+	firstnumber=1000,                % start line enumeration with line 1000
+	frame=single,	                   % adds a frame around the code
+	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+	keywordstyle=\color{blue},       % keyword style
+	language=Python,                 % the language of the code
+	% morekeywords={*,...},            % if you want to add more keywords to the set
+	numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+	numbersep=5pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+	showstringspaces=false,          % underline spaces within strings only
+	showtabs=false,                  % show tabs within strings adding particular underscores
+	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+	stringstyle=\color{ltgreen},     % string literal style
+	tabsize=2,	                   % sets default tabsize to 2 spaces
+	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+\lstdefinestyle{customc}{
+	breaklines=true,
+	frame=leftline,
+	xleftmargin=\parindent,
+	language=C,
+	showstringspaces=false,
+	%basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{blue}, %{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{black},
+	stringstyle=\color{ltgreen},
+	tabsize=2
+}
+
+\lstdefinestyle{customcpp}{
+	frame=tb,
+	language=C++,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{ltgreen},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+% - - Define code snippet configuration
+
+% - - Page Styling 
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\setlength\textfloatsep{18pt}
+
+% - - Page numbering for mainmatter
+\makeoddhead{plain}{}{}{\thepage}
+\makeevenhead{plain}{}{}{\thepage}
+\makeoddfoot{plain}{}{}{}
+\makeevenfoot{plain}{}{}{}
+
+% - - Page numbering for frontmatter
+\makepagestyle{pter}
+\makeoddhead{pter}{}{}{}
+\makeevenhead{pter}{}{}{}
+\makeoddfoot{pter}{}{\thepage}{}
+\makeevenfoot{pter}{}{\thepage}{}
+\pagestyle{pter}
+
+% - - Styling for Section/Subsection/Subsubsection --
+\titlespacing{\section}{0pt}{10pt}{-\parskip}
+\titlespacing{\subsection}{0pt}{10pt}{-\parskip}
+\titlespacing{\subsubsection}{0pt}{10pt}{-\parskip}
+	% - - Section Headers
+\titleformat{\section}{\normalfont\large\bfseries\filright}{}{0pt}{}
+	% - - Subsection Headers
+\titleformat{\subsection}{\normalfont\bfseries\itshape\filright}{}{0pt}{}
+	% - - Subsection Headers
+\titleformat{\subsubsection}{\normalfont\itshape\filright}{}{0pt}{}
+
+% - - LOT LOF depth
+\setcounter{lofdepth}{3}
+\setcounter{lotdepth}{3}
+
+% - - TOC
+	%LOT LOF Bibliography styling
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{pter}}}
+\AtBeginDocument{\addtocontents{lof}{\protect\thispagestyle{pter}}}
+\AtBeginDocument{\addtocontents{lot}{\protect\thispagestyle{pter}}}
+\renewcommand\bibname{\scshape\centerline{Bibliography}\global\def\bibname{\scshape Bibliography}}
+%\setpnumwidth{4em}
+ \renewcommand{\printtoctitle}{\centering\Large}
+ \renewcommand*{\cftfigurename}{Figure \space}
+ \renewcommand*{\cfttablename}{Table \space}
+\renewcommand{\contentsname}{\scshape Table of Contents}
+\renewcommand{\listfigurename}{\scshape List of Figures}
+\renewcommand{\listtablename}{\scshape List of Tables}
+	% - - TOC Chapter name styling
+\renewcommand*{\cftchaptername}{\scshape Chapter\space}
+\renewcommand*{\cftappendixname}{\scshape Appendix\space}
+\renewcommand{\cftchapteraftersnum}{:}
+\setlength{\cftchapternumwidth}{8mm}
+\setsecnumdepth{chapter}
+
+% Set figure and table numbering width in LOF, LOT
+\setlength{\cftfigurenumwidth}{12mm}
+\setlength{\cfttablenumwidth}{12mm}
+
+% - - Chapter header styling
+\makechapterstyle{Chapter}{
+	\setlength{\beforechapskip}{-36.5pt}
+	\setlength{\midchapskip}{5pt}
+	\setlength{\afterchapskip}{10pt}
+	\renewcommand{\afterchapternum}{ : }
+	\renewcommand{\afterchaptertitle}{%
+		\vskip 0.75\onelineskip \hrule\vskip\onelineskip}
+	\renewcommand{\chaptitlefont}{\centering\normalfont\Large\scshape}
+	\renewcommand{\chapnamefont}{\normalfont\Large\scshape}
+	\renewcommand{\chapnumfont}{\normalfont\Large}
+	\renewcommand{\thechapter}{\Roman{chapter}}
+	\setcounter{tocdepth}{3}
+}
+\chapterstyle{Chapter}
+
+% - - Appendix styling
+\renewcommand*\cftappendixname{Appendix~}
+\renewcommand{\appendixpagename}{\scshape \Large Appendices}
+\renewcommand{\appendixtocname}{\scshape Appendices}
+
+% - - Force table and figure number formats
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}  
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} 
+
+% - - Force penalties for hanging/orphaned lines
+\clubpenalty10000
+\widowpenalty10000
+\interlinepenalty=5000
+\raggedbottom
+
+% - - Force penalties for split references
+\usepackage{etoolbox}
+\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+
+\DoubleSpacing
+\begin{document}
+
+	\graphicspath{{./images/}}
+	\bibliographystyle{apa}
+	
+	\frontmatter
+	
+	% - - - title page - - -
+	\thispagestyle{empty}
+	\begin{center}
+	\vspace{2.54cm}\normalsize
+	\begin{Large} \begin{SingleSpace}\bfseries \scshape A Dissertation / Thesis Template in \LaTeX \end{SingleSpace}\end{Large}
+	%\vspace{2.54cm}\normalsize
+	\vspace{1.27cm}\normalsize
+	by\\Scott P. Morton
+%	\vspace{2.54cm}\normalsize
+	\vspace{1.27cm}\normalsize
+	\begin{SingleSpace}
+	A Dissertation (Thesis) Submitted in Partial Fulfillment of the Requirements for the Degree of\\
+	\end{SingleSpace}
+	\vspace{1.27cm}\normalsize
+	%\begin{SingleSpace}
+	The Degree\\in\\My Chosen Field\\
+	%\end{SingleSpace}
+	\vspace{1.27cm}\normalsize
+	\vspace{1.27cm}\normalsize
+	%\begin{SingleSpace}
+	Middle Tennessee State University\\
+	December, 2020
+	%\mydate\today
+	%\end{SingleSpace}
+	%\vspace{2.54cm}\normalsize
+	\vspace{1.27cm}\normalsize
+	\begin{SingleSpace}
+		%\hspace{11.0em}Dissertation Committee:
+        Dissertation Committee:
+	\end{SingleSpace}
+	\begin{list}{}{\setlength{\leftmargin}{13.25em}\setlength{\itemsep}{0pt}}
+		\item Dr. Greathearted, \emph{Chair}
+		\item Dr. Yoda
+		\item Dr. Dooalot
+		\item Dr. Heliopolis
+	\end{list}
+	\end{center}
+	\newpage
+	% - - - Title Page - - -
+
+	% - - - Dedications Page - - -
+	\pagestyle{pter}
+	\begin{vplace}[0.7]
+		\begin{center}
+		This page is optional. Students wishing to dedicate the thesis or dissertation to someone may do so using this page. This page does not include a heading, and the text should be brief and centered on the page. Pagination is centered, in lowercase Roman numerals.
+		
+		\end{center}
+	\end{vplace}
+	\newpage
+	% - - - Dedications Page - - -
+
+	% - - - Acknowedglements Page - - -
+	\pagestyle{pter}
+	\begin{center}
+	\textbf{\Large\scshape Acknowledgments}
+	\end{center}
+	This page is optional and can be used to include brief statements of appreciation or recognition. This page has the heading “ACKNOWLEDGEMENTS,” and the heading must be centered and written in all capital letters. Pagination is centered, in lowercase Roman numerals.
+	
+	\newpage
+	% - - - Acknowedglements Page - - -
+
+	% - - - Abstract Page - - -
+	\pagestyle{pter}
+	\begin{center}
+	\textbf{\Large\scshape Abstract}
+	\end{center}
+Every thesis or dissertation is required to include an abstract. This should be approximately 350 words for dissertations and 150 words for theses. The student and the committee will determine the content of the abstract. The page must be titled “ABSTRACT,” and the heading must be centered and written in all capital letters. Pagination is centered, in lowercase Roman numerals.
+
+	
+	\newpage
+	% - - - Abstract Page - - -
+	
+	\tableofcontents*
+	\clearpage
+	
+	\listoftables
+    \clearpage
+
+	\listoffigures
+	\clearpage
+	
+	\mainmatter
+	% - - - The Document - - -
+	\include{chapter01}
+	\clearpage
+	\include{chapter02}
+	\clearpage
+	\include{chapter03}
+	\clearpage
+	\include{chapter04}
+	\clearpage
+	\include{chapter05}
+	\clearpage
+	
+	\SingleSpacing
+	% - - - Bibliography - - -
+	\bibliography{/home/scott/Documents/Research/references/library}
+	%\bibliography{library}
+	\clearpage
+	\DoubleSpacing
+	% - - - Appendices - - -
+	\appendixpage
+	\include{appendixA}
+	\clearpage
+	\include{appendixB}
+%	\clearpage
+%	\include{appendixC}
+%	\clearpage
+%	\include{appendixD}
+	
+	%\backmatter
+\end{document}

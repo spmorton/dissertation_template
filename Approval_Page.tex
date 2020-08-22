@@ -1,0 +1,166 @@
+\documentclass[12pt, oneside]{memoir}
+
+% Include these packages:
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[top=3.175cm, bottom=2.54cm, left=3.81cm, right=2.54cm]{geometry}	 % for margin requirements.
+\usepackage{mathptmx}% http://ctan.org/pkg/mathptmx
+\usepackage{setspace} % for double-spacing.
+\usepackage{xifthen}%
+\DoubleSpacing
+\usepackage{lipsum}
+\usepackage{tocloft}
+\usepackage{color}
+\usepackage{array}
+\usepackage{stfloats}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{changepage}
+\usepackage{titlesec}
+\usepackage{lscape}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{datetime}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{amsmath}
+
+\usepackage[colorlinks=true, linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+%\usepackage{color}
+% - - Define code snippet configuration
+
+% Define the date format modifier
+\newdateformat{mydate}{\monthname[\THEMONTH], \THEYEAR}
+
+
+
+% - - Page Styling 
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\setlength\textfloatsep{18pt}
+
+% - - Page numbering for mainmatter
+\makeoddhead{plain}{}{}{\thepage}
+\makeevenhead{plain}{}{}{\thepage}
+\makeoddfoot{plain}{}{}{}
+\makeevenfoot{plain}{}{}{}
+
+% - - Page numbering for frontmatter
+\makepagestyle{pter}
+\makeoddhead{pter}{}{}{}
+\makeevenhead{pter}{}{}{}
+\makeoddfoot{pter}{}{\thepage}{}
+\makeevenfoot{pter}{}{\thepage}{}
+\pagestyle{pter}
+
+% - - Styling for Section/Subsection/Subsubsection --
+\titlespacing{\section}{0pt}{10pt}{-\parskip}
+\titlespacing{\subsection}{0pt}{10pt}{-\parskip}
+\titlespacing{\subsubsection}{0pt}{10pt}{-\parskip}
+	% - - Section Headers
+\titleformat{\section}{\normalfont\large\bfseries\filright}{}{0pt}{}
+	% - - Subsection Headers
+\titleformat{\subsection}{\normalfont\bfseries\itshape\filright}{}{0pt}{}
+	% - - Subsection Headers
+\titleformat{\subsubsection}{\normalfont\itshape\filright}{}{0pt}{}
+% - - TOC
+	%LOT LOF Bibliography styling
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{pter}}}
+\AtBeginDocument{\addtocontents{lof}{\protect\thispagestyle{pter}}}
+\AtBeginDocument{\addtocontents{lot}{\protect\thispagestyle{pter}}}
+\renewcommand\bibname{\scshape\centerline{Bibliography}\global\def\bibname{\scshape Bibliography}}
+%\setpnumwidth{4em}
+ \renewcommand{\printtoctitle}{\centering\Large}
+ \renewcommand*{\cftfigurename}{Figure \space}
+ \renewcommand*{\cfttablename}{Table \space}
+\renewcommand{\contentsname}{\scshape Table of Contents}
+\renewcommand{\listfigurename}{\scshape List of Figures}
+\renewcommand{\listtablename}{\scshape List of Tables}
+	% - - TOC Chapter name styling
+\renewcommand*{\cftchaptername}{\scshape Chapter\space}
+\renewcommand*{\cftappendixname}{\scshape Appendix\space}
+\renewcommand{\cftchapteraftersnum}{:}
+\setlength{\cftchapternumwidth}{8mm}
+\setsecnumdepth{chapter}
+
+% Set figure and table numbering width in LOF, LOT
+\setlength{\cftfigurenumwidth}{12mm}
+\setlength{\cfttablenumwidth}{12mm}
+
+%\makeatletter
+%\let\memoir@l@section\l@section
+%\def\l@section#1#2{%
+%	\mihai@gobble@number#1\@nil
+%}
+%\def\mihai@gobble@number\numberline#1#2\@nil{%
+%	\memoir@l@section{#2}{}%
+%}
+
+
+
+% - - Chapter header styling
+\makechapterstyle{Chapter}{
+	\setlength{\beforechapskip}{-36.5pt}
+	\setlength{\midchapskip}{5pt}
+	\setlength{\afterchapskip}{10pt}
+	\renewcommand{\afterchapternum}{ : }
+	\renewcommand{\afterchaptertitle}{%
+		\vskip 0.75\onelineskip \hrule\vskip\onelineskip}
+	\renewcommand{\chaptitlefont}{\centering\normalfont\Large\scshape}
+	\renewcommand{\chapnamefont}{\normalfont\Large\scshape}
+	\renewcommand{\chapnumfont}{\normalfont\Large}
+	\renewcommand{\thechapter}{\Roman{chapter}}
+	\setcounter{tocdepth}{3}
+}
+\chapterstyle{Chapter}
+
+
+
+
+\DoubleSpacing
+\begin{document}
+
+
+	
+	% - - - title page - - -
+	\thispagestyle{empty}
+	\begin{center}
+	\vspace{2.54cm}\normalsize
+	\begin{Large} \begin{SingleSpace}\bfseries \scshape A Dissertation / Thesis Template in \LaTeX \end{SingleSpace}\end{Large}
+	%\vspace{2.54cm}\normalsize
+	\vspace{1.27cm}\normalsize
+	Scott P. Morton\\
+	%vspace{1.27cm}\normalsize
+	August 6, 2020
+	%\today
+	\vspace{0.85cm}\normalsize
+	\end{center}
+Approved:
+\\
+\newline
+\indent\indent\makebox[4in]{\hrulefill}\\
+\indent\indent Dr. Dr. Greathearted, \emph{Chair}\\
+\\
+\indent\indent\makebox[4in]{\hrulefill}\\
+\indent\indent Dr. Yoda\\
+\\
+\indent\indent\makebox[4in]{\hrulefill}\\
+\indent\indent Dr. Dooalot\\
+\\
+\indent\indent\makebox[4in]{\hrulefill}\\
+\indent\indent Dr. Heliopolis\\
+\\
+\indent\indent\makebox[4in]{\hrulefill}\\
+\indent\indent Director of the Computational Science PhD Program\\
+\\
+\indent\indent\makebox[4in]{\hrulefill}\\
+\indent\indent Dean of the College of Graduate Studies
+
+
+
+%\end{center}
+	% - - - Title Page - - -
+
+\end{document}
